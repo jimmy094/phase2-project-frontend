@@ -1,18 +1,30 @@
+import React, { Component } from 'react';
+import { Button } from 'semantic-ui-react'
+
+class Task extends Component {
 
 
-function Task () {
+render() {
+
+    let {taskName, image, priority, startDate, endDate} = this.props.task
+
     return (
-        <div>
-            <ul>
-                <li>Task name</li>
-                <li>task image</li>
-                <li>priority</li>
-                <li>start date</li>
-                <li>end date</li>
-            </ul>
-        </div>
+    <li>
+      <div>
+        <h2>{taskName}</h2>
+        <h4 style={{color: "red"}}>Priority level: {priority}</h4>
+        
+        <img src={image} alt={this.props.taskName}/>
+        
+        <li>{startDate}</li>
+        <li>{endDate}</li>
+        <Button basic color="orange"> Delete</Button>
+      </div>
+    </li>   
+            
     )
 
 }
+}
 
-export default Task
+export default Task;

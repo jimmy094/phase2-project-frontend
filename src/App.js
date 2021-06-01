@@ -1,21 +1,41 @@
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import NewTaskForm from './components/NewTaskForm'
 import SearchTasks from './components/SearchTasks'
 import TaskList from './components/TaskList'
+import 'semantic-ui-css/semantic.min.css'
 
-function App() {
+class App extends Component {
+
+state = {
+  tasks: [],
+}
+
+
+componentDidMount = () => {
+  fetch("http://localhost:3000/tasks")
+    .then(res => res.json())
+    .then(tasksArr => {
+      this.setState({
+        tasks: tasksArr
+      })
+    })
+}
+
+  render() {
   return (
     <div className="App">
       <header className="App-header">
-       <NewTaskForm/>
-       <SearchTasks/>
+       <NewTaskForm />
+       <SearchTasks />
       </header>
       <div>
-        <TaskList/>
+        <TaskList tasks={this.state.tasks}/>
       </div>
     </div>
   );
+}
 }
 
 export default App;
