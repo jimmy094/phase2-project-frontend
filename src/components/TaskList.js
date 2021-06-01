@@ -13,14 +13,14 @@ const TaskList = (props) => {
     })
     
     return (
-        <Card>
+        <div>
             <h2>Task list</h2>
-            <Card.Content>
+            <ul>
             {arrayOfTasks}
-            </Card.Content>
+            </ul>
 
             
-        </Card>
+        </div>
     )
 }
 
