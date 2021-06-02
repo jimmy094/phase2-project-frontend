@@ -23,15 +23,30 @@ componentDidMount = () => {
     })
 }
 
+addTask = (newTask) => {
+  let taskArr = [...this.state.tasks, newTask]
+  this.setState({
+    tasks: taskArr
+  })
+}
+
+deleteTask = (taskID) => {
+  let taskArr = this.state.tasks.filter(task => task.id !== taskID)
+  this.setState({
+    tasks: taskArr
+  })
+}
+
+
   render() {
   return (
     <div className="App">
       <header className="App-header">
-       <NewTaskForm />
+       <NewTaskForm addTask={this.addTask}/>
        <SearchTasks />
       </header>
       <div>
-        <TaskList tasks={this.state.tasks}/>
+        <TaskList tasks={this.state.tasks} deleteTask={this.deleteTask}/>
       </div>
     </div>
   );

@@ -9,18 +9,13 @@ const TaskList = (props) => {
 
     
      let arrayOfTasks = props.tasks.map((taskObj) => {
-        return <Task key={taskObj.id} task={taskObj}/>
+        return <Task key={taskObj.id} task={taskObj} deleteTask={props.deleteTask}/>
     })
     
     return (
-        <div>
-            <h2>Task list</h2>
-            <ul>
-            {arrayOfTasks}
-            </ul>
-
-            
-        </div>
+      <Card.Group itemsPerRow={3}>
+          {arrayOfTasks}
+      </Card.Group>
     )
 }
 
