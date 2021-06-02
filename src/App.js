@@ -5,11 +5,19 @@ import NewTaskForm from './components/NewTaskForm'
 import SearchTasks from './components/SearchTasks'
 import TaskList from './components/TaskList'
 import 'semantic-ui-css/semantic.min.css'
+import Headers from './components/Headers'
 
 class App extends Component {
 
 state = {
   tasks: [],
+  searchTerm: ""
+}
+
+changeSearchTerm = (newTerm) => {
+  this.setState({
+    searchTerm: newTerm
+  })
 }
 
 
@@ -23,13 +31,31 @@ componentDidMount = () => {
     })
 }
 
+// deleteTask = (taskID) => {
+//   let toysArr = this.state.tasks.filter(task => task.id !== taskID)
+//   this.setState({
+//     tasks: tasksArr
+//   })
+// }
+
   render() {
+
+let {tasks, searchTerm} = this.state
+
+// let filteredTasks = tasks.filter((taskObj, idx) => {
+//   return taskObj.name.toLowerCase().includes(searchTerm.toLowerCase())
+// })
+
   return (
     <div className="App">
-      <header className="App-header">
-       <NewTaskForm />
-       <SearchTasks />
+     <header>
+      <Headers />
       </header>
+      <div>
+       <NewTaskForm />
+       <SearchTasks searchTerm={searchTerm} changeSearchTerm={this.changeSearchTerm}/>
+       </div>
+
       <div>
         <TaskList tasks={this.state.tasks}/>
       </div>
@@ -39,3 +65,5 @@ componentDidMount = () => {
 }
 
 export default App;
+
+        

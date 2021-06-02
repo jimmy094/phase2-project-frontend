@@ -1,16 +1,29 @@
 import React from 'react' 
+import { Input } from 'semantic-ui-react'
 
-class SearchTasks extends React.Component {
-    render() {
+
+
+
+
+const SearchTasks = props => {
+
+    let handleChange = (e) => {
+        props.changeSearchTerm(e.target.value)
+      }
+        
+    
         return(
             <div>
-                <input
+                <Input
                     type="text"
-                    placeholder="search a task">
-                </input>
+                    placeholder="search a task"
+                    value={props.searchTerm} 
+                    onChange={handleChange}/>
+                
             </div>
         )
-    }
 }
 
-export default SearchTasks
+
+
+export default SearchTasks;
