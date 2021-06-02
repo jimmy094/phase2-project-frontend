@@ -42,9 +42,10 @@ componentDidMount = () => {
 
 let {tasks, searchTerm} = this.state
 
-// let filteredTasks = tasks.filter((taskObj, idx) => {
-//   return taskObj.name.toLowerCase().includes(searchTerm.toLowerCase())
-// })
+let filteredTasks = tasks.filter((taskObj, idx) => {
+  return taskObj.taskName.toLowerCase().includes(searchTerm.toLowerCase())
+})
+console.log(tasks, searchTerm)
 
   return (
     <div className="App">
@@ -57,7 +58,7 @@ let {tasks, searchTerm} = this.state
        </div>
 
       <div>
-        <TaskList tasks={this.state.tasks}/>
+        <TaskList tasks={filteredTasks}/>
       </div>
     </div>
   );
