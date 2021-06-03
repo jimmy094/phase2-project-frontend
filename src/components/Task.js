@@ -25,7 +25,7 @@ render() {
     <div>
       <Card>
         <h2>Task: {taskName}</h2>
-        <h4 style={{color: "red"}}>Priority level: {priority}</h4>
+        <h4 style={{color: "red"}}>Priority level: {priority}</h4>  
         <p>Start Date: {startDate}</p>
         <p>End Date: {endDate}</p>
         <Button negative color="red" onClick={this.handleDelete}> Delete Task</Button>
