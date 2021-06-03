@@ -6,21 +6,25 @@ import SearchTasks from './components/SearchTasks'
 import TaskList from './components/TaskList'
 import 'semantic-ui-css/semantic.min.css'
 import Headers from './components/Headers'
+import Filter from './components/Filter'
 
 class App extends Component {
-
 state = {
   tasks: [],
-  searchTerm: ""
+  searchTerm: "",
+  // filter: "Low"
 }
-
 changeSearchTerm = (newTerm) => {
   this.setState({
     searchTerm: newTerm
   })
 }
-
-
+// The filter function works, but we need a little more time to get it to work properly in conjunction with the search function
+// filterPriority= (newFilter) => {
+//   this.setState ({
+//     filter: newFilter
+//   })
+// }
 componentDidMount = () => {
   fetch("http://localhost:3000/tasks")
     .then(res => res.json())
@@ -31,34 +35,43 @@ componentDidMount = () => {
     })
 }
 
-// deleteTask = (taskID) => {
-//   let toysArr = this.state.tasks.filter(task => task.id !== taskID)
-//   this.setState({
-//     tasks: tasksArr
-//   })
-// }
+addTask = (newTask) => {
+  let taskArr = [...this.state.tasks, newTask]
+  this.setState({
+    tasks: taskArr
+  })
+}
 
-  render() {
+deleteTask = (taskID) => {
+  let taskArr = this.state.tasks.filter(task => task.id !== taskID)
+  this.setState({
+    tasks: taskArr
+  })
+}
 
-let {tasks, searchTerm} = this.state
-
+render() {
+let {tasks, searchTerm, filter} = this.state
 let filteredTasks = tasks.filter((taskObj, idx) => {
-  return taskObj.taskName.toLowerCase().includes(searchTerm.toLowerCase())
+  // if (searchTerm !== "") {
+    return taskObj.taskName.toLowerCase().includes(searchTerm.toLowerCase())
+  // } 
+  // else {
+  //   return taskObj.priority===filter
+  // }
+
 })
-console.log(tasks, searchTerm)
+
+console.log(tasks, searchTerm,filter)
 
   return (
     <div className="App">
-     <header>
-      <Headers />
+      <header className="App-header">
+       <NewTaskForm addTask={this.addTask}/>
+       <SearchTasks searchTerm={searchTerm} changeSearchTerm={this.changeSearchTerm}/>
+      {/* <Filter filter={filter} filterPriority={this.filterPriority}/> */}
       </header>
       <div>
-       <NewTaskForm />
-       <SearchTasks searchTerm={searchTerm} changeSearchTerm={this.changeSearchTerm}/>
-       </div>
-
-      <div>
-        <TaskList tasks={filteredTasks}/>
+        <TaskList tasks={filteredTasks} deleteTask={this.deleteTask}/>
       </div>
     </div>
   );
@@ -66,5 +79,3 @@ console.log(tasks, searchTerm)
 }
 
 export default App;
-
-        

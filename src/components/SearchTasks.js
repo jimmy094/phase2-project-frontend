@@ -1,10 +1,6 @@
 import React from 'react' 
 import { Input } from 'semantic-ui-react'
 
-
-
-
-
 const SearchTasks = props => {
 
     let handleChange = (e) => {
@@ -23,7 +19,5 @@ const SearchTasks = props => {
             </div>
         )
 }
-
-
 
 export default SearchTasks;

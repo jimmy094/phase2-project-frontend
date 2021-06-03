@@ -3,25 +3,19 @@ import { Card } from 'semantic-ui-react'
 
 import Task from './Task'
 
-
-
 const TaskList = (props) => {
-
-        let arrayOfTasks = props.tasks.map((taskObj) => {
-           return <Task key={taskObj.id} task={taskObj}/>
-        })
+    console.log(props)
+     let arrayOfTasks = props.tasks.map((taskObj) => {
+        
+        return <Task key={taskObj.id} task={taskObj} deleteTask={props.deleteTask}/>
+    })
     
     return (
-            
-        <Card.Group>
-            
-            {arrayOfTasks}
-        
-        </Card.Group>
-
-            
+      <Card.Group itemsPerRow={3}>
+          {arrayOfTasks}
+      </Card.Group>
     )
-}
 
+}
 
 export default TaskList;
