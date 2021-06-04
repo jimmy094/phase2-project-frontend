@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import { Chart } from 'react-charts'
 import './App.css';
 import NewTaskForm from './components/NewTaskForm'
 import SearchTasks from './components/SearchTasks'
 import TaskList from './components/TaskList'
 import 'semantic-ui-css/semantic.min.css'
-import Headers from './components/Headers'
-import Filter from './components/Filter'
+//import MyChart from './components.Chart'
 
 class App extends Component {
 state = {
@@ -49,6 +49,19 @@ deleteTask = (taskID) => {
   })
 }
 
+updateTask=(updatedTask)=>{
+  let taskArr = this.state.tasks.map(task=>{
+    if (task.id===updatedTask.id) {
+      return updatedTask
+    } else {
+      return task
+    }
+  })
+  this.setState({
+    tasks:taskArr
+  })
+}
+
 render() {
 let {tasks, searchTerm, filter} = this.state
 let filteredTasks = tasks.filter((taskObj, idx) => {
@@ -71,8 +84,11 @@ console.log(tasks, searchTerm,filter)
       {/* <Filter filter={filter} filterPriority={this.filterPriority}/> */}
       </header>
       <div>
-        <TaskList tasks={filteredTasks} deleteTask={this.deleteTask}/>
+        <TaskList tasks={filteredTasks} deleteTask={this.deleteTask} updateTask={this.updateTask}/>
       </div>
+      {/* <div>
+        <MyChart/>
+      </div> */}
     </div>
   );
 }

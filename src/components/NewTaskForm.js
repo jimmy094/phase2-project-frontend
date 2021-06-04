@@ -4,9 +4,9 @@ import FileUploader from './FileUploader'
 class NewTaskForm extends React.Component {
 
     state={
-        name:"",
-        image:"",
-        priority:"Low",
+        taskName:"",
+        // image:"",
+        priority:"",
         startDate:"",
         endDate:""
     }
@@ -25,8 +25,8 @@ class NewTaskForm extends React.Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        taskName: this.state.name,
-        image: this.state.image,
+        taskName: this.state.taskName,
+        // image: this.state.image,
         priority:this.state.priority,
         startDate:this.state.startDate,
         endDate:this.state.endDate
@@ -49,17 +49,17 @@ class NewTaskForm extends React.Component {
               <h3>Enter a task</h3>
               <input 
               type="text" 
-              name="name" 
+              name="taskName" 
               placeholder="What is your task?" 
               className="input-text"
-              value={this.state.name}
+              value={this.state.taskName}
               onChange={this.handleChange}
               />
               <br/>
-              {/* <FileUploader */}
-                {/* // onFileSelectSuccess={(file) => setSelectedFile(file)}
-                // onFileSelectError={({ error }) => alert(error)} */}
-              {/* /> */}
+              {/* <FileUploader
+                // onFileSelectSuccess={(file) => setSelectedFile(file)}
+                // onFileSelectError={({ error }) => alert(error)}
+              /> */}
               <br/>
               <select name="priority" 
               id="priority"
